@@ -3,11 +3,15 @@ var number = 10;
 var right = 0;
 var wrong = 0;
 var answerOne = "storm";
+var answerTwo = "Hope";
+var answerThree = "speedforce";
 
 //  Variable that will hold our interval ID when we execute
 //  the "run" function
 var intervalId;
 $("#questionOne").hide()
+$("#questionTwo").hide()
+$("#questionThree").hide()
 //  When the stop button gets clicked, run the stop function.
 $("#start").on("click", start);
 
@@ -23,6 +27,8 @@ function start() {
     clearInterval(intervalId);
     intervalId = setInterval(decrement, 1000);
     $("#questionOne").show()
+    $("#questionTwo").show()
+    $("#questionThree").show()
     $("#start").hide()
 
 }
@@ -43,22 +49,65 @@ function decrement() {
         //  ...run the stop function.
         stop();
 
-        //  Alert the user that time is up.
-        //alert("Time Up!");
-        if($("input[type='radio'].radioBtnClass").is(':checked')) {
-            var card_type = $("input[type='radio'].radioBtnClass:checked").val();
-            if (answerOne === card_type){
-                alert("you got it!")
-            }
-            else{
-                alert("you suck")
-            }
         
+        if($("input[type='radio'].radioBtnClass1").is(':checked')) {
+            var card_type = $("input[type='radio'].radioBtnClass1:checked").val();
+            
+            if (card_type === answerOne ){ //for correct guess
+                
+                right++
+                
+                
+            }
+            else{ //for wrong guess
+                
+                wrong++
+                
+                
+            }
+
     }
+        else{ //for unchecked box
+        wrong++
+        
+        }
+   if($("input[type='radio'].radioBtnClass2").is(':checked')) {
+        var card_typetwo = $("input[type='radio'].radioBtnClass2:checked").val();
+        if (answerTwo === card_typetwo){
+            
+            right++
+        }
+        else{
+            
+            wrong++
+        }
     
 }
+    else{ //for unchecked box
+    wrong++
+    
+    }
+    if($("input[type='radio'].radioBtnClass3").is(':checked')) {
+    var card_type3 = $("input[type='radio'].radioBtnClass3:checked").val();
+    if (answerThree === card_type3){
+        
+            right++
+        }
+        else{
+            
+            wrong++
+        }
     
 }
+    else{ //for unchecked box
+    wrong++
+    
+    }
+    end()
+}
+
+}
+
 function stop() {
 
     //  Clears our intervalId
@@ -67,5 +116,10 @@ function stop() {
     clearInterval(intervalId);
   }
 
-
-
+function end(){
+$("#questionOne").hide()
+$("#questionTwo").hide()
+$("#questionThree").hide()
+$("#correct").html("Correct " +right)
+$("#incorrect").html("Incorrect " +wrong)
+}
