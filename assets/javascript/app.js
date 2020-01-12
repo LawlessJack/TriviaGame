@@ -1,5 +1,5 @@
 
-var number = 10;
+var number = 20; //20 second timer
 var right = 0;
 var wrong = 0;
 var answerOne = "storm";
@@ -12,17 +12,14 @@ var intervalId;
 $("#questionOne").hide()
 $("#questionTwo").hide()
 $("#questionThree").hide()
-//  When the stop button gets clicked, run the stop function.
+
 $("#start").on("click", start);
 
 
 
 
 
-//  The run function sets an interval
-//  that runs the decrement function once a second.
-//  *****BUG FIX******** 
-//  Clearing the intervalId prior to setting our new intervalId will not allow multiple instances.
+
 function start() {
     clearInterval(intervalId);
     intervalId = setInterval(decrement, 1000);
@@ -49,62 +46,62 @@ function decrement() {
         //  ...run the stop function.
         stop();
 
-        
-        if($("input[type='radio'].radioBtnClass1").is(':checked')) {
+
+        if ($("input[type='radio'].radioBtnClass1").is(':checked')) {
             var card_type = $("input[type='radio'].radioBtnClass1:checked").val();
-            
-            if (card_type === answerOne ){ //for correct guess
-                
+
+            if (card_type === answerOne) { //for correct guess
+
                 right++
-                
-                
+
+
             }
-            else{ //for wrong guess
-                
+            else { //for wrong guess
+
                 wrong++
-                
-                
+
+
             }
 
-    }
-        else{ //for unchecked box
-        wrong++
-        
         }
-   if($("input[type='radio'].radioBtnClass2").is(':checked')) {
-        var card_typetwo = $("input[type='radio'].radioBtnClass2:checked").val();
-        if (answerTwo === card_typetwo){
-            
-            right++
-        }
-        else{
-            
+        else { //for unchecked box. I decided to have unanswered questions count as incorrect answers
             wrong++
+
         }
-    
-}
-    else{ //for unchecked box
-    wrong++
-    
-    }
-    if($("input[type='radio'].radioBtnClass3").is(':checked')) {
-    var card_type3 = $("input[type='radio'].radioBtnClass3:checked").val();
-    if (answerThree === card_type3){
-        
-            right++
+        if ($("input[type='radio'].radioBtnClass2").is(':checked')) {
+            var card_typetwo = $("input[type='radio'].radioBtnClass2:checked").val();
+            if (answerTwo === card_typetwo) {
+
+                right++
+            }
+            else {
+
+                wrong++
+            }
+
         }
-        else{
-            
+        else { //for unchecked box
             wrong++
+
         }
-    
-}
-    else{ //for unchecked box
-    wrong++
-    
+        if ($("input[type='radio'].radioBtnClass3").is(':checked')) { // there may be a better way to accomplish this with a for loop.
+            var card_type3 = $("input[type='radio'].radioBtnClass3:checked").val();
+            if (answerThree === card_type3) {
+
+                right++
+            }
+            else {
+
+                wrong++
+            }
+
+        }
+        else { //for unchecked box
+            wrong++
+
+        }
+        end()
     }
-    end()
-}
 
 }
 
@@ -114,12 +111,12 @@ function stop() {
     //  We just pass the name of the interval
     //  to the clearInterval function.
     clearInterval(intervalId);
-  }
+}
 
-function end(){
-$("#questionOne").hide()
-$("#questionTwo").hide()
-$("#questionThree").hide()
-$("#correct").html("Correct " +right)
-$("#incorrect").html("Incorrect " +wrong)
+function end() { //hides all the questions so we can show just the results
+    $("#questionOne").hide()
+    $("#questionTwo").hide()
+    $("#questionThree").hide()
+    $("#correct").html("Correct: " + right)
+    $("#incorrect").html("Incorrect: " + wrong)
 }

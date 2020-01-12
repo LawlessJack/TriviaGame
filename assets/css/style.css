@@ -1,0 +1,27 @@
+.block {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: blueviolet;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+#container{
+    text-align: center;
+    margin: 50px;
+    background: rgb(246, 210, 63);
+    height: 400px;
+}
+
+body{
+    background-image:url("../images/dc.jpg");
+    background-size: auto;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
